@@ -19,7 +19,8 @@ Triggers that support dynamic concurrency
 * Blobs: Send batch updates
 * Service Bus: 
 
-
+Parameter names must match name in function.json
+Decorators on methods and parameters
 
 ### Storage Account
 Requires a storage account for triggers, bindings, and logging.
@@ -75,7 +76,7 @@ function: single function call
 host: all functions on host
 Master: admin access to REST APIs
 System: Used by internal systems to authorize access to function
-
+Identity-based connections not supported with Durable Functions
 
 
 

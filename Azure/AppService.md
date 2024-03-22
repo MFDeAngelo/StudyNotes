@@ -66,5 +66,61 @@ System.Diagnostics.Trace.TraceError("If you're seeing this, something bad happen
 az webapp log tail --name appname --resource-group myResourceGroup
 
 
+### Autoscaling
+More expensive than manual scaling
 
+Based on:
+* Metrics
+* Schedule
 
+Metrics:
+* CPU Percentage
+* Memory Percentage
+* Disk Queue Length (outstanding I/O requests)
+* Data In
+* Data Out
+* Metrics from other service
+
+Any scale out rule is met => scale out
+All scale in rules are met => scale in
+
+Scale out by instances or until metric condition is met
+Configure autoscale notifications:
+* When a scale operation occurs
+* results of scale operation
+* metrics are unavailable, or re-available
+
+### Deployment Slots
+available to:
+* Web apps
+* mobile backends
+* APIs
+
+Swapped settings:
+* Handler Mappings
+* webjobs content
+* hybrid connections
+* azure content delivery network
+* service endpoints
+* path mappings
+
+Not swapped settings:
+* Publishing endpoints
+* custom domain names
+* non-public certificates
+* scale settings
+* webjobs schedulers
+* Ip restrictions
+* Always on
+* diagnostic log settings
+* CORS
+* virtual network integration
+* managed identities
+* settings that end with _EXTENSION_VERSION
+
+Automated warm up in web.config under applicationInitialization
+
+### Routing
+x-ms-routing-name is the header or query param to tell you which slot a request is routed to
+x-ms-routing-name=self is production
+<webappname>.azurewebsites.net/?x-ms-routing-name=staging routes to staging
