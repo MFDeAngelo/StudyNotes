@@ -117,3 +117,46 @@ properties:
       storageAccountKey: <Storage account key>
 tags: {}
 type: Microsoft.ContainerInstance/containerGroups
+
+
+### Container Apps
+Restart on crash
+
+Environment -> Container App -> Container
+
+Sidecar container example:
+Retrieves logs from primary container, and forwards them on to another service
+
+private registries can be used to pull images
+{
+  ...
+  "registries": [{
+    "server": "docker.io",
+    "username": "my-registry-user-name",
+    "passwordSecretRef": "my-password-secret-name"
+  }]
+}
+
+Limitations:
+* Can't run priviledged containers
+* Must be linux containers
+
+
+#### Security
+Disable allowInsecure
+Only used with HTTPS
+Azure's pre packaged authentication works using the sidecar pattern
+
+Does the following:
+* Authenticates users and clients with the specified identity provider(s)
+* Manages the authenticated session
+* Injects identity information into HTTP request headers
+
+Secrets are scoped to an application
+Update secret -> restart revision
+
+#### Revisions
+Can have multiple revisions active.
+az containerapp update to create a new revision
+
+
